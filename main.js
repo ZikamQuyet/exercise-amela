@@ -74,23 +74,18 @@ const handleSumDivisor = (number) => {
 };
 
 // Bài 6
-const sortArr = (arr) => {
-  arr.sort(function (a, b) {
-    return a - b;
-  });
-  return arr;
-};
 const findNumberMin = (number) => {
   if (typeof number === "number") {
     let arr = number.toString().split("");
-    let arrNumber = arr.map((item) => +item);
-    arrNumber = sortArr(arrNumber);
-    const arrNumber0 = arrNumber.filter((item) => item === 0);
-    arrNumber = arrNumber.filter((item) => item !== 0);
-    for (let i = 0; i < arrNumber0.length; i++) {
-      arrNumber.splice(1, 0, arrNumber0[i]);
+    arr = arr.sort();
+    console.log("arr :>> ", arr);
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] !== "0") {
+        [arr[0], arr[i]] = [arr[i], arr[0]];
+        break;
+      }
     }
-    return +arrNumber.join("");
+    return +arr.join("");
   }
   return false;
 };
